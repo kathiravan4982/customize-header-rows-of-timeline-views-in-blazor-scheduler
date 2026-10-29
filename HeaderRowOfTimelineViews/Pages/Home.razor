@@ -1,0 +1,86 @@
+@page "/"
+@using System.Globalization
+
+<PageTitle>Scheduler - Header Rows of Timeline Views</PageTitle>
+
+<SfSchedule TValue="AppointmentDataModel" @bind-SelectedDate="@CurrentDate"
+            Height="500px" Width="100%">
+    <ScheduleHeaderRows>
+        <ScheduleHeaderRow Option="HeaderRowType.Year">
+            <Template>
+                <div class="date-text">@(getMonthYearText((context as TemplateContext).Date)) </div>
+            </Template>
+        </ScheduleHeaderRow>
+        <ScheduleHeaderRow Option="HeaderRowType.Week">
+            <Template>
+                <div class="date-text">Week: @(getWeekText((context as TemplateContext).Date))</div>
+            </Template>
+        </ScheduleHeaderRow>
+        <ScheduleHeaderRow Option="HeaderRowType.Date">
+
+        </ScheduleHeaderRow>
+    </ScheduleHeaderRows>
+    <ScheduleViews>
+        <ScheduleView Option="View.TimelineDay"></ScheduleView>
+        <ScheduleView Option="View.TimelineWeek"></ScheduleView>
+        <ScheduleView Option="View.TimelineWorkWeek"></ScheduleView>
+        <ScheduleView Option="View.TimelineMonth" Interval="12"></ScheduleView>
+    </ScheduleViews>
+    <ScheduleEventSettings DataSource="@ScheduleData">
+    </ScheduleEventSettings>
+</SfSchedule>
+
+@code {
+    public static string getMonthYearText(DateTime date)
+    {
+        return date.ToString("MMMM yyyy", CultureInfo.InvariantCulture);
+    }
+
+    public static string getWeekText(DateTime date)
+    {
+        return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday).ToString();
+    }
+
+    DateTime CurrentDate = new DateTime(2021, 7, 5);
+
+    public class AppointmentDataModel
+    {
+        public int Id { get; set; }
+
+        public string Subject { get; set; } = string.Empty;
+
+        public DateTime StartTime { get; set; }
+
+        public DateTime EndTime { get; set; }
+
+    }
+
+    List<AppointmentDataModel> ScheduleData = new List<AppointmentDataModel>
+    {
+        new AppointmentDataModel
+        {
+            Id = 1,
+            Subject = "Skarting",
+            StartTime = new DateTime(2021, 7, 5, 9, 0, 0),
+            EndTime = new DateTime(2021, 7, 5, 10, 0, 0)
+
+        },
+        new AppointmentDataModel
+        {
+            Id = 2,
+            Subject = "Swimming",
+            StartTime = new DateTime(2021, 7, 7, 11, 0, 0),
+            EndTime = new DateTime(2021, 7, 7, 12, 0, 0)
+
+        },
+        new AppointmentDataModel
+        {
+            Id = 3,
+            Subject = "Table Tennis",
+            StartTime = new DateTime(2021, 7, 9, 10, 0, 0),
+            EndTime = new DateTime(2021, 7, 9, 11, 0, 0)
+
+        }
+
+    };
+}

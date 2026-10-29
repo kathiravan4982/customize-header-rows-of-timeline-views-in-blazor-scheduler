@@ -28,9 +28,9 @@ This is a quick start Blazor project designed to help developers learn how to cu
 ## How to Run the Project
 
 1. Checkout this project to your local machine
-2. Open the solution file using Visual Studio 2022
-3. Build the solution to restore the required NuGet packages
-4. Press `F5` to start the application
+2. Open the `HeaderRowOfTimelineViews` project folder using Visual Studio 2022 or Visual Studio Code
+3. Build the project to restore the required NuGet packages
+4. Run the application using `dotnet run` or press `F5`
 
 ## Key Concepts
 
