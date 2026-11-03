@@ -13,7 +13,7 @@ This is a quick start Blazor project designed to help developers learn how to cu
 ## Prerequisites
 
 * Visual Studio 2022
-* .NET 6.0 or later
+* .NET 10.0 or later
 
 ## Documentation
 
